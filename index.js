@@ -259,8 +259,10 @@ addEventListener('fetch', event => {
 
 /* 通过分析链接实时获取 favicon */
 function getFavicon(url) {
-  const domain = url.match(/https?:\/\/([^/]+)/)?.[1] || url;
-  return `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
+  const domain = new URL(url).hostname;
+  // 新接口：https://www.faviconextractor.com/favicon/
+  // 备用接口：https://api.iowen.cn/favicon (项目地址：https://github.com/owen0o0/getFavicon)
+  return `https://www.faviconextractor.com/favicon/${domain}`;
 }
 
 /** Render Functions */
